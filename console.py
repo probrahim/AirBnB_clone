@@ -55,7 +55,24 @@ class HBNBCommand(cmd.Cmd):
             else:
                 print("** no instance found **")
 
+    def destroy(self, arg):
+        cmds = shlex.split(arg)
+        if len(cmds) == 0:
+            print("** class name missing **")
+        elif cmds[0] is not self.class_list:
+            print("** class doesn't exist **")
+        elif cmds[1] == 1:
+            print("** instance id missing **")
+        else:
+            obj = storage.all()
+            value = "{}.{}".format(cmds[0], cmds[1])
+            if value in obj:
+                print(obj[value])
+            else:
+                print("** no instance found **")
+
     
+        
             
 
 if __name__ == '__main__':
