@@ -6,4 +6,5 @@ task 2 : __
 task 3 : done
 task 4 : done
 task 5 : done
-task 6 : I'm working on it
+task 6 : done
+task 7 : I'm working on it
