@@ -7,4 +7,5 @@ task 3 : done
 task 4 : done
 task 5 : done
 task 6 : done
-task 7 : I'm working on it
+task 7 : done
+task 8 : I'm working on it

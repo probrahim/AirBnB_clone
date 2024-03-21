@@ -56,21 +56,26 @@ class HBNBCommand(cmd.Cmd):
                 print("** no instance found **")
 
     def do_destroy(self, arg):
-        cmds = shlex.split(arg)
-        if len(cmds) == 0:
+        """
+        Delete instance based on the class name.
+        Usage: destroy
+        """
+        cmnds = shlex.split(arg)
+
+        if len(cmnds) == 0:
             print("** class name missing **")
-        elif cmds[0] not in self.class_list:
+        elif cmnds[0] not in self.class_list:
             print("** class doesn't exist **")
-        elif cmds[1] == 1:
+        elif len(cmnds) < 1:
             print("** instance id missing **")
         else:
             obj = storage.all()
-            value = "{}.{}".format(cmds[0], cmds[1])
-            if value in obj:
-                print(obj[value])
+            k = "{}.{}".format(cmnds[0], cmnds[1])
+            if k in obj:
+                del obj[k]
+                storage.save()
             else:
                 print("** no instance found **")
-
     
     def do_all(self, arg):
         
@@ -88,9 +93,37 @@ class HBNBCommand(cmd.Cmd):
                 if k.split('.')[0] == cmnds[0]:
                     print(str(v))
 
-
-
+    def do_update(self, arg):
+        cmnds = shlex.split(arg)
+        
+        if len(cmnds) == 0:
+            print("** class name missing **")
+        elif cmnds[0] not in self.class_list:
+            print("** class doesn't exist **")
+        elif len(cmnds) == 1:
+            print("** instance id missing **")
+        else:
             
-
+            obj = storage.all()
+            
+            k = "{}.{}".format(cmnds[0], cmnds[1])
+            if k not in obj:
+                print("** no instance found **")
+            elif len(cmnds) == 2:
+                print("** attribute name missing **")
+            elif len(cmnds) == 3:
+                print("** value missing **")
+            else:
+                ob = obj[k]
+                atname = cmnds[2]
+                atvalue = cmnds[3]
+                try:
+                    atvalue = eval(atvalue)
+                except Exception:
+                    pass
+                setattr(ob, atname, atvalue)
+                
+                ob.save()
+                
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
