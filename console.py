@@ -43,7 +43,7 @@ class HBNBCommand(cmd.Cmd):
         cmds = shlex.split(arg)
         if len(cmds) == 0:
             print("** class name missing **")
-        elif cmds[0] is not self.class_list:
+        elif cmds[0] not in self.class_list:
             print("** class doesn't exist **")
         elif len(cmds) == 1:
             print("** instance id missing **")
@@ -59,7 +59,7 @@ class HBNBCommand(cmd.Cmd):
         cmds = shlex.split(arg)
         if len(cmds) == 0:
             print("** class name missing **")
-        elif cmds[0] is not self.class_list:
+        elif cmds[0] not in self.class_list:
             print("** class doesn't exist **")
         elif cmds[1] == 1:
             print("** instance id missing **")
@@ -73,6 +73,7 @@ class HBNBCommand(cmd.Cmd):
 
     
     def do_all(self, arg):
+        
         
         obj = storage.all()      
         cmnds = shlex.split(arg)
