@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+import json
 
 class FileStorage:
     __file_path = "file.json"
@@ -12,16 +13,19 @@ class FileStorage:
         self.__objects[met] = obj
 
     def save(self):
-        from json import dump
+        """
+        Serializes the __objects dictionary into 
+        JSON format and saves it to the file specified by __file_path.
+        """
+        all_objs = FileStorage.__objects
 
-        file_name = self.__file_path
+        obj_dict = {}
 
-        to_json = dict(self.__objects)
-        for k, v in to_json.items():
-            to_json[k] = v.to_dict()
+        for obj in all_objs.keys():
+            obj_dict[obj] = all_objs[obj].to_dict()
 
-        with open(file_name, "w", encoding="UTF-8") as f:
-            dump(to_json, f)
+        with open(FileStorage.__file_path, "w", encoding="utf-8") as file:
+            json.dump(obj_dict, file)
 
     def reload(self):
         from json import load
