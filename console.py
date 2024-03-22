@@ -1,16 +1,10 @@
 #!/usr/bin/python3
 import cmd
 import shlex
-import ast
-import re
 from models.base_model import BaseModel
 from models import storage
 from models.user import User
-from models.amenity import Amenity
-from models.place import Place
-from models.review import Review
-from models.state import State
-from models.city import City
+
 
 
 class HBNBCommand(cmd.Cmd):
@@ -18,8 +12,7 @@ class HBNBCommand(cmd.Cmd):
     
     """
     prompt = "(hbnb) "
-    class_list = ["BaseModel", "User", "Amenity", 
-                  "Place", "Review", "State", "City"]
+    class_list = ["BaseModel"]
     
     def do_quit(self, arg):
         return True
@@ -44,8 +37,8 @@ class HBNBCommand(cmd.Cmd):
         elif cmds[0] not in self.class_list:
             print("** class doesn't exist **")
         else:
-            inst = eval(f"{cmds[0]}()")
-            storage.save()
+            inst = BaseModel()
+            inst.save()
             print(inst.id)
 
     def do_show(self, arg):
@@ -101,32 +94,6 @@ class HBNBCommand(cmd.Cmd):
             for k, v in obj.items():
                 if k.split('.')[0] == cmnds[0]:
                     print(str(v))
-                    
-    def do_count(self, arg):
-        """
-        Counts and retrieves the number of instances of a class
-        usage: <class name>.count()
-        """
-        objs = storage.all()
-
-        cmnd = shlex.split(arg)
-
-        if arg:
-            cls = cmnd[0]
-
-        count = 0
-
-        if cmnd:
-            if cls in self.class_list:
-                for obj in objs.values():
-                    if obj.__class__.__name__ == cls:
-                        count += 1
-                print(count)
-            else:
-                print("** invalid class name **")
-        else:
-            print("** class name missing **")
-
 
     def do_update(self, arg):
         cmnds = shlex.split(arg)
@@ -150,40 +117,14 @@ class HBNBCommand(cmd.Cmd):
                 print("** value missing **")
             else:
                 ob = obj[k]
-                curly_braces = re.search(r"\{(.*?)\}", arg)
-                if curly_braces:
-                    try:
-                        str_data = curly_braces.group(1)
-
-                        arg_dict = ast.literal_eval("{" + str_data + "}")
-
-                        attribute_names = list(arg_dict.k())
-                        attribute_values = list(arg_dict.v())
-                        try:
-                            attr_name1 = attribute_names[0]
-                            attr_value1 = attribute_values[0]
-                            setattr(obj, attr_name1, attr_value1)
-                        except Exception:
-                            pass
-                        try:
-                            attr_name2 = attribute_names[1]
-                            attr_value2 = attribute_values[1]
-                            setattr(obj, attr_name2, attr_value2)
-                        except Exception:
-                            pass
-                    except Exception:
-                        pass
-                else:
-
-                    attr_name = cmnds[2]
-                    attr_value = cmnds[3]
-
-                    try:
-                        attr_value = eval(attr_value)
-                    except Exception:
-                        pass
-                    setattr(obj, attr_name, attr_value)
-
+                atname = cmnds[2]
+                atvalue = cmnds[3]
+                try:
+                    atvalue = eval(atvalue)
+                except Exception:
+                    pass
+                setattr(ob, atname, atvalue)
+                
                 ob.save()
                 
 if __name__ == '__main__':

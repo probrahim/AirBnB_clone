@@ -1,23 +1,16 @@
 #!/usr/bin/python3
-from models.user import User
-from models.base_model import BaseModel
-from models.amenity import Amenity
-from models.place import Place
-from models.review import Review
-from models.state import State
-from models.city import City
 
 class FileStorage:
     
     __file_path = "file.json"
     __objects = {}
 
+    def all(self):
+        return self.__objects
+
     def new(self, obj):
         met = str(obj.__class__.__name__) + '.' + str(obj.id)
         self.__objects[met] = obj
-
-    def all(self):
-        return self.__objects
 
     def save(self):
         from json import dump
