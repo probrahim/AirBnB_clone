@@ -33,10 +33,3 @@ class BaseModel:
         obj_dict['created_at'] = self.created_at.isoformat("T")
         obj_dict['updated_at'] = self.updated_at.isoformat("T")
         return obj_dict
-
-    # Define first_name attribute
-    def set_first_name(self, first_name):
-        self.first_name = first_name
-
-    def get_first_name(self):
-        return self.first_name
