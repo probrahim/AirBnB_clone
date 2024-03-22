@@ -1,15 +1,21 @@
 #!/usr/bin/python3
 import cmd
 import shlex
-from models.base_model import BaseModel
 from models import storage
+from models.base_model import BaseModel
+from models.amenity import Amenity
+from models.city import City
+from models.place import Place
+from models.review import Review
+from models.state import State
 from models.user import User
+
 
 
 class HBNBCommand(cmd.Cmd):
 
     prompt = "(hbnb) "
-    class_list = ["BaseModel"]
+    class_list = ["BaseModel", "User"]
 
     def do_quit(self, arg):
         return True
@@ -34,8 +40,8 @@ class HBNBCommand(cmd.Cmd):
         elif cmds[0] not in self.class_list:
             print("** class doesn't exist **")
         else:
-            inst = BaseModel()
-            inst.save()
+            inst = eval(f"{cmds[0]}()")
+            storage.save()
             print(inst.id)
 
     def do_show(self, arg):
