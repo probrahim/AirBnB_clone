@@ -15,7 +15,8 @@ from models.user import User
 class HBNBCommand(cmd.Cmd):
 
     prompt = "(hbnb) "
-    class_list = ["BaseModel", "User"]
+    class_list = ["BaseModel", "Amenity", "City", "Place", 
+                  "Review", "State", "User"]
 
     def do_quit(self, arg):
         return True
