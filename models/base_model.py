@@ -6,7 +6,7 @@ from models import storage
 
 class BaseModel:
     def __init__(self, *args, **kwargs):
-        
+
         if kwargs:
             dt = "%Y-%m-%dT%H:%M:%S.%f"
             for key, value in kwargs.items():
@@ -19,7 +19,7 @@ class BaseModel:
             self.created_at = datetime.now()
             self.updated_at = self.created_at
             storage.new(self)
-        
+
     def __str__(self):
         return f"[{type(self).__name__}] ({self.id}) {self.__dict__}"
 

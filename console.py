@@ -6,14 +6,11 @@ from models import storage
 from models.user import User
 
 
-
 class HBNBCommand(cmd.Cmd):
-    """
-    
-    """
+
     prompt = "(hbnb) "
     class_list = ["BaseModel"]
-    
+
     def do_quit(self, arg):
         return True
 
@@ -78,13 +75,12 @@ class HBNBCommand(cmd.Cmd):
                 storage.save()
             else:
                 print("** no instance found **")
-    
+
     def do_all(self, arg):
-        
-        
-        obj = storage.all()      
+
+        obj = storage.all()
         cmnds = shlex.split(arg)
-        
+
         if len(cmnds) == 0:
             for k, v in obj.items():
                 print(str(v))
@@ -97,7 +93,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_update(self, arg):
         cmnds = shlex.split(arg)
-        
+
         if len(cmnds) == 0:
             print("** class name missing **")
         elif cmnds[0] not in self.class_list:
@@ -105,9 +101,9 @@ class HBNBCommand(cmd.Cmd):
         elif len(cmnds) == 1:
             print("** instance id missing **")
         else:
-            
+
             obj = storage.all()
-            
+
             k = "{}.{}".format(cmnds[0], cmnds[1])
             if k not in obj:
                 print("** no instance found **")
@@ -124,8 +120,9 @@ class HBNBCommand(cmd.Cmd):
                 except Exception:
                     pass
                 setattr(ob, atname, atvalue)
-                
+
                 ob.save()
-                
+
+
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
