@@ -25,19 +25,6 @@ class HBNBCommand(cmd.Cmd):
 
     list_class = ['User', 'City', 'Amenity', 'State',
                 'Review', 'Place', 'BaseModel']
-    clss = {'User': {'email': str, 'password': str, 'first_name': str,
-                        'last_name': str},
-               'City': {'state_id': str, 'name': str},
-               'Amenity': {'name': str},
-               'State': {'name': str},
-               'Review': {'place_id': str, 'user_id': str, 'text': str},
-               'Place': {'city_id': str, 'user_id': str, 'name': str,
-                         'description': str, 'number_rooms': int,
-                         'number_bathrooms': int, 'max_guest': int,
-                         'price_by_night': int, 'latitude': float,
-                         'longitude': float, 'amenity_ids': eval},
-               'BaseModel': {'id': str, 'created_at': datetime,
-                             'updated_at': datetime}}
 
     cmnds = ['create', 'show', 'update', 'all', 'destroy', 'count']
 
