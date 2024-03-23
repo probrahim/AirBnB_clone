@@ -18,21 +18,28 @@ class HBNBCommand(cmd.Cmd):
     class_list = ["BaseModel", "Amenity", "City", "Place", 
                   "Review", "State", "User"]
 
-    def do_quit(self, arg):
-        return True
+    def help_help(self):
+        """ Prints the help command's description """
+        print("Provides description of a given command")
 
-    def help_quit(self):
-        return True
+    def do_EOF(self, line):
+        """Exits the program with ^D
+        """
 
-    def do_EOF(self, arg):
-        return True
-
-    def help_EOF(self):
         print("")
+        return True
+
+    def do_quit(self, line):
+        """Exits the program with quit command
+        """
+
+        return True
 
     def emptyline(self):
-        pass
+        """Do nothing with empty line
+        """
 
+        pass
     def do_create(self, arg):
         cmds = shlex.split(arg)
         if len(cmds) == 0:
