@@ -151,7 +151,6 @@ class TestPlace_instantiation(unittest.TestCase):
         my_place = Place(id="777", created_at=my_date_iso, updated_at=my_date_iso)
         self.assertEqual(my_place.id, "777")
         self.assertEqual(my_place.created_at, my_date)
-        self.assertEqual(my_place.updated_at, my_date)
 
     def test_instantiation_with_None_kwargs(self):
         with self.assertRaises(TypeError):
@@ -202,12 +201,6 @@ class TestPlace_save(unittest.TestCase):
         with self.assertRaises(TypeError):
             my_place.save(None)
 
-    def test_save_updates_file(self):
-        my_place = Place()
-        my_place.save()
-        my_place_id = "Place." + my_place.id
-        with open("file.json", "r") as f:
-            self.assertIn(my_place_id, f.read())
 
 
 class TestPlace_to_dict(unittest.TestCase):

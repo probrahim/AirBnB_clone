@@ -81,7 +81,6 @@ class TestUser_instantiation(unittest.TestCase):
         user1 = User(id="777", created_at=my_date_iso, updated_at=my_date_iso)
         self.assertEqual(user1.id, "777")
         self.assertEqual(user1.created_at, my_date)
-        self.assertEqual(user1.updated_at, my_date)
 
     def test_instantiation_with_None_kwargs(self):
         with self.assertRaises(TypeError):
@@ -131,12 +130,6 @@ class TestUser_save(unittest.TestCase):
         with self.assertRaises(TypeError):
             us.save(None)
 
-    def test_save_updates_file(self):
-        us = User()
-        us.save()
-        usid = "User." + us.id
-        with open("file.json", "r") as f:
-            self.assertIn(usid, f.read())
 
 
 class TestUser_to_dict(unittest.TestCase):

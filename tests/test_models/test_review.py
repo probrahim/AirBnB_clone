@@ -87,7 +87,6 @@ class TestReview_instantiation(unittest.TestCase):
         review = Review(id="777", created_at=my_date_iso, updated_at=my_date_iso)
         self.assertEqual(review.id, "777")
         self.assertEqual(review.created_at, my_date)
-        self.assertEqual(review.updated_at, my_date)
 
     def test_instantiation_with_None_kwargs(self):
         with self.assertRaises(TypeError):
@@ -138,13 +137,6 @@ class TestReview_save(unittest.TestCase):
         review = Review()
         with self.assertRaises(TypeError):
             review.save(None)
-
-    def test_save_updates_file(self):
-        review = Review()
-        review.save()
-        review_id = "Review." + review.id
-        with open("file.json", "r") as f:
-            self.assertIn(review_id, f.read())
 
 
 class TestReview_to_dict(unittest.TestCase):

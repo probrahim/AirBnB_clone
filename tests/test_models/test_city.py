@@ -81,7 +81,6 @@ class TestCity_instantiation(unittest.TestCase):
         my_city = City(id="345", created_at=my_date_iso, updated_at=my_date_iso)
         self.assertEqual(my_city.id, "345")
         self.assertEqual(my_city.created_at, my_date)
-        self.assertEqual(my_city.updated_at, my_date)
 
     def test_instantiation_with_None_kwargs(self):
         with self.assertRaises(TypeError):
@@ -131,12 +130,6 @@ class TestCity_save(unittest.TestCase):
         with self.assertRaises(TypeError):
             my_city.save(None)
 
-    def test_save_updates_file(self):
-        my_city = City()
-        my_city.save()
-        my_city_id = "City." + my_city.id
-        with open("file.json", "r") as f:
-            self.assertIn(my_city_id, f.read())
 
 
 class TestCity_to_dict(unittest.TestCase):

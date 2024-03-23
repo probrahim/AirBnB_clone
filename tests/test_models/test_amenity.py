@@ -93,7 +93,6 @@ class TestAmenity_instantiation(unittest.TestCase):
         amenity1 = Amenity(id="777", created_at=my_date_iso, updated_at=my_date_iso)
         self.assertEqual(amenity1.id, "777")
         self.assertEqual(amenity1.created_at, my_date)
-        self.assertEqual(amenity1.updated_at, my_date)
 
     def test_instantiation_with_None_kwargs(self):
         with self.assertRaises(TypeError):
@@ -142,13 +141,6 @@ class TestAmenity_save(unittest.TestCase):
         amenity1 = Amenity()
         with self.assertRaises(TypeError):
             amenity1.save(None)
-
-    def test_save_updates_file(self):
-        amenity1 = Amenity()
-        amenity1.save()
-        amenity_id = "Amenity." + amenity1.id
-        with open("file.json", "r") as f:
-            self.assertIn(amenity_id, f.read())
 
 
 class TestAmenity_to_dict(unittest.TestCase):

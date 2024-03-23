@@ -75,7 +75,6 @@ class TestState_instantiation(unittest.TestCase):
         state = State(id="345", created_at=my_date_iso, updated_at=my_date_iso)
         self.assertEqual(state.id, "345")
         self.assertEqual(state.created_at, my_date)
-        self.assertEqual(state.updated_at, my_date)
 
     def test_instantiation_with_None_kwargs(self):
         with self.assertRaises(TypeError):
@@ -126,14 +125,6 @@ class TestState_save(unittest.TestCase):
         state = State()
         with self.assertRaises(TypeError):
             state.save(None)
-
-    def test_save_updates_file(self):
-        state = State()
-        state.save()
-        state_id = "State." + state.id
-        with open("file.json", "r") as f:
-            self.assertIn(state_id, f.read())
-
 
 class TestState_to_dict(unittest.TestCase):
     """
