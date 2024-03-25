@@ -206,7 +206,7 @@ python3 -m unittest discover tests
 ## ``6-Authors``
 
 -   [Yassir Elyasini](https://github.com/yssrexe/)
--   [Mounssif Bouhlaoui](https://github.com/probrahim/)
+-   [Ibrahim hassani Hassni](https://github.com/probrahim/)
 
 ## ``7- License``
 
