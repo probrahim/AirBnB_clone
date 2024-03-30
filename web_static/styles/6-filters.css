@@ -64,6 +64,7 @@
   border-radius: 4px;
   position: absolute;
   top: 100%;
+  width: 82%;
   padding: 20px;
   padding-bottom: 0;
   display: none;
@@ -82,3 +83,4 @@
 li {
   list-style: none;
 }
+
