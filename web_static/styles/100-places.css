@@ -1,0 +1,110 @@
+.places > div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .places h1,
+  .places h2 {
+    font-size: 30px;
+  }
+  .places h1 {
+    margin-left: 20px;
+    margin-top: 20px;
+  }
+  .places h2 {
+    text-align: center;
+  }
+  .places article {
+    width: 390px;
+    padding: 20px;
+    margin: 20px;
+    border: solid 1px #ff5a5f;
+    border-radius: 4px;
+    position: relative;
+  }
+  .places article > div:nth-child(1) {
+    height: 80px;
+  }
+  .bottomBorder {
+    border-bottom: 1px solid #dddddd;
+  }
+  .places .price_by_night {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ff5a5f;
+    border: solid 4px #ff5a5f;
+    min-width: 60px;
+    min-height: 60px;
+    aspect-ratio: 1/1;
+    font-size: 30px;
+    border-radius: 50%;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 5px;
+  }
+  .information {
+    display: flex;
+    justify-content: space-around;
+    max-height: 80px;
+    line-height: 120px;
+  }
+  .max_guest {
+    background-image: url("../images/icon_group.png");
+  }
+  .number_rooms {
+    background-image: url("../images/icon_bed.png");
+  }
+  .number_bathrooms {
+    background-image: url("../images/icon_bath.png");
+  }
+  
+  .max_guest,
+  .number_rooms,
+  .number_bathrooms {
+    background-repeat: no-repeat;
+    background-position: center 5px;
+  }
+  .user {
+    padding: 10px 0;
+  }
+  article .amenities,
+  article .reviews {
+    margin-top: 40px;
+  }
+  article .amenities h2,
+  article .reviews h2 {
+    font-size: 16px;
+    text-align: left;
+    padding: 0 0 10px;
+  }
+  article .amenities ul {
+    margin: 5px 0;
+  }
+  article .icon_tv {
+    background-image: url("../images/icon_tv.png");
+  }
+  article .icon_wifi {
+    background-image: url("../images/icon_wifi.png");
+  }
+  article .icon_pets {
+    background-image: url("../images/icon_pets.png");
+  }
+  article .icon {
+    background-repeat: no-repeat;
+    padding: 8px;
+    padding-left: 40px;
+    background-position: 0px 7px;
+    background-size: 22px;
+  }
+  article .reviews h3 {
+    font-size: 14px;
+  }
+  article .reviews p {
+    font-size: 12px;
+  }
+  article .reviews li {
+    margin: 10px 0;
+  }
+  
